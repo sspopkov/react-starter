@@ -1,0 +1,11 @@
+@use './vars' as vars;
+@use './fonts' as fonts;
+@forward './fonts.scss';
+
+body, html {
+  margin: 0;
+  padding: 0;
+  @include fonts.body-1;
+  font-family: 'Work Sans', sans-serif;
+  color: vars.$color-black;
+}
