@@ -58,10 +58,14 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "public/index.html"),
+        favicon: path.resolve(__dirname, "public/favicon.ico"),
       }),
       new webpack.EnvironmentPlugin({
         BASE_PATH: process.env.BASE_PATH,
         BACKEND_URL: process.env.BACKEND_URL,
+      }),
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
       }),
     ],
     optimization: {
