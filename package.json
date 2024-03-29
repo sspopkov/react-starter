@@ -11,20 +11,32 @@
     "dev": "env-cmd -f ./.env webpack-dev-server",
     "build": "tsc --build && env-cmd -f ./.env webpack",
     "start": "env-cmd -f ./.env serve -s build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node scripts/test.js --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@types/jest": "^29.5.12",
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
+    "babel-jest": "^29.7.0",
+    "babel-preset-react-app": "^10.0.1",
+    "camelcase": "^8.0.0",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
     "file-loader": "^6.2.0",
     "http-proxy-middleware": "^2.0.6",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-resolve": "^29.7.0",
+    "jest-teamcity-reporter": "^0.9.0",
+    "jest-watch-typeahead": "^2.2.2",
     "mini-css-extract-plugin": "^2.7.6",
+    "msw": "^2.2.11",
     "prettier": "3.1.0",
+    "react-app-polyfill": "^3.0.0",
     "react-router": "^6.20.1",
     "react-router-dom": "^6.20.1",
     "sass": "^1.69.5",
@@ -46,5 +58,59 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "serve": "^14.2.1"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts"
+    ],
+    "setupFiles": [
+      "react-app-polyfill/jsdom"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+    ],
+    "testEnvironment": "<rootDir>/config/jest/env-setup.js",
+    "transform": {
+      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "modulePaths": [],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web",
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "tsx",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node"
+    ],
+    "testEnvironmentOptions": {
+      "customExportConditions": [""]
+    },
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ],
+    "testResultsProcessor": "jest-teamcity-reporter",
+    "resetMocks": true
   }
 }
