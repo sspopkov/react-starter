@@ -19,6 +19,12 @@ module.exports = () => {
       historyApiFallback: true,
       open: true,
       port: process.env.PORT || 3000,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+      proxy: {
+        "/api": "http://localhost:8083",
+      },
     },
     module: {
       rules: [

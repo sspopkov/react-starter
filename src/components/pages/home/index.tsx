@@ -5,7 +5,7 @@ const HomePage = () => {
     <div style={{ padding: 30 }}>
       <h1>Home Page</h1>
       <p>
-        <Link to="/sample">Go to Sample page</Link>
+        <Link to="/carprice">Go to Sample page</Link>
       </p>
     </div>
   );

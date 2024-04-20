@@ -4,7 +4,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import HomePage from "../pages/home";
-import SamplePage from "../pages/sample";
+import SamplePage from "../pages/carprice";
 import NotFound from "../pages/not-found";
 import { RouterProvider } from "react-router";
 import "~/assets/main.scss";
@@ -16,7 +16,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route index element={<HomePage />} />
-      <Route path="/sample" element={<SamplePage />} />
+      <Route path="/carprice" element={<SamplePage />} />
       <Route path="*" element={<NotFound />} />
     </Route>,
   ),
