@@ -35,7 +35,7 @@ module.exports = () => {
           type: "asset/resource",
         },
         {
-          test: /\.s[ac]ss$/i,
+          test: /\.(sass|css|scss)$/,
           use: [
             isProduction ? MiniCssExtractPlugin.loader : "style-loader",
             "css-loader",
@@ -55,6 +55,11 @@ module.exports = () => {
         "@": path.resolve(__dirname, "src"),
       },
     },
+    performance: {
+      hints: false,
+      maxEntrypointSize: 512000,
+      maxAssetSize: 512000,
+    },
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "public/index.html"),
@@ -65,7 +70,7 @@ module.exports = () => {
         BACKEND_URL: process.env.BACKEND_URL,
       }),
       new MiniCssExtractPlugin({
-        filename: '[name].css',
+        filename: "[name].css",
       }),
     ],
     optimization: {
@@ -89,23 +94,23 @@ module.exports = () => {
         new CssMinimizerPlugin(),
       ],
       splitChunks: {
-        chunks: "all",
-        minSize: 0,
-        maxInitialRequests: 10,
-        maxAsyncRequests: 10,
+        chunks: "async",
+        minSize: 20000,
+        minRemainingSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        enforceSizeThreshold: 50000,
         cacheGroups: {
-          vendors: {
+          defaultVendors: {
             test: /[\\/]node_modules[\\/]/,
-            name(module, chunks, cacheGroupKey) {
-              const packageName = module.context.match(
-                /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
-              )[1];
-              return `${cacheGroupKey}.${packageName.replace("@", "")}`;
-            },
-          },
-          common: {
-            minChunks: 2,
             priority: -10,
+            reuseExistingChunk: true,
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
           },
         },
       },

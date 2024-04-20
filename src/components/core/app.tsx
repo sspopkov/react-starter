@@ -8,6 +8,7 @@ import SamplePage from "../pages/sample";
 import NotFound from "../pages/not-found";
 import { RouterProvider } from "react-router";
 import "~/assets/main.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import "~/utils/ensure-basepath";
 

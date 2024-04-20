@@ -1,10 +1,7 @@
-import fish from "~/assets/images/fish.png";
-import cat from "~/assets/images/cat.jpg";
-import lion from "~/assets/images/lion.svg";
-import { ReactComponent as LionSVG } from "~/assets/images/lion.svg";
 import styles from "./sample.module.scss";
 import { useCallback, useEffect, useState } from "react";
 import { requests } from "~/services/api/requests";
+import Form from "react-bootstrap/Form";
 
 const SamplePage = () => {
   const [result, setResult] = useState<{ [k: string]: string } | null>(null);
@@ -25,14 +22,16 @@ const SamplePage = () => {
   }, [handleFetch]);
 
   return (
-    <div className={styles.container}>
-      <h1>Sample Page</h1>
-      <img src={fish} alt="fish" width={482} height={246} />
-      <img src={cat} alt="fish" width={439} height={293} />
-      <img src={lion} alt="lion" width={777} height={544} />
-      <LionSVG />
-      {JSON.stringify(result)}
-    </div>
+    <Form className={styles.container}>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="name@example.com" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>Example textarea</Form.Label>
+        <Form.Control as="textarea" rows={3} />
+      </Form.Group>
+    </Form>
   );
 };
 
