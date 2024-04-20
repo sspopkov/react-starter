@@ -35,7 +35,7 @@ const SamplePage = () => {
         console.error(error);
       }
     },
-    [mark, model, year, mileage, voleng],
+    [mark, model, year, mileage, voleng, fuel],
   );
 
   return (
