@@ -1,5 +1,5 @@
 import styles from "./sample.module.scss";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { requests } from "~/services/api/requests";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";

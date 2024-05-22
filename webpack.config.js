@@ -22,9 +22,6 @@ module.exports = () => {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
-      proxy: {
-        "/api": "http://localhost:8083",
-      },
     },
     module: {
       rules: [
@@ -77,6 +74,7 @@ module.exports = () => {
       }),
       new MiniCssExtractPlugin({
         filename: "[name].css",
+        chunkFilename: "[id].css",
       }),
     ],
     optimization: {
